@@ -1,9 +1,9 @@
 package com.vodworks.service.mapper;
 
-import com.vodworks.domain.*;
+import com.vodworks.domain.Respondent;
 import com.vodworks.service.dto.RespondentDTO;
-
-import org.mapstruct.*;
+import org.mapstruct.Mapper;
+import org.mapstruct.Mapping;
 
 /**
  * Mapper for the entity {@link Respondent} and its DTO {@link RespondentDTO}.

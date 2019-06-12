@@ -1,8 +1,7 @@
 package com.vodworks.domain;
 
-import com.vodworks.config.Constants;
-
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.vodworks.config.Constants;
 import org.apache.commons.lang3.StringUtils;
 import org.hibernate.annotations.BatchSize;
 

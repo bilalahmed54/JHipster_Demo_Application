@@ -1,7 +1,7 @@
 package com.vodworks.repository;
 
 import com.vodworks.domain.CampaignSocialComponent;
-import org.springframework.data.jpa.repository.*;
+import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 

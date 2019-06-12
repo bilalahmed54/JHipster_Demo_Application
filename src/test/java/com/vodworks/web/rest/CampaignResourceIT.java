@@ -7,7 +7,6 @@ import com.vodworks.service.CampaignService;
 import com.vodworks.service.dto.CampaignDTO;
 import com.vodworks.service.mapper.CampaignMapper;
 import com.vodworks.web.rest.errors.ExceptionTranslator;
-
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.MockitoAnnotations;

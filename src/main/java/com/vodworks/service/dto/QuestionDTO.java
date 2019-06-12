@@ -1,5 +1,9 @@
 package com.vodworks.service.dto;
-import javax.validation.constraints.*;
+
+import com.vodworks.domain.Question;
+
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import java.io.Serializable;
 import java.util.Objects;
 
@@ -14,8 +18,16 @@ public class QuestionDTO implements Serializable {
     @Size(max = 8000)
     private String jsonBody;
 
-
     private Long campaignId;
+
+    public QuestionDTO() {
+    }
+
+    public QuestionDTO(Question question) {
+        this.id = question.getId();
+        this.jsonBody = question.getJsonBody();
+        this.campaignId = question.getCampaign().getId();
+    }
 
     public Long getId() {
         return id;

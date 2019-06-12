@@ -1,8 +1,10 @@
 package com.vodworks.service.dto;
-import javax.validation.constraints.*;
+
+import com.vodworks.domain.enumeration.CampaignSocialComponentType;
+
+import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.util.Objects;
-import com.vodworks.domain.enumeration.CampaignSocialComponentType;
 
 /**
  * A DTO for the {@link com.vodworks.domain.CampaignSocialComponent} entity.
@@ -20,13 +22,12 @@ public class CampaignSocialComponentDTO implements Serializable {
     @NotNull
     private Boolean isPrimary;
 
-    @NotNull
     private String imageFileUrl;
 
     @NotNull
     private CampaignSocialComponentType type;
 
-
+    @NotNull
     private Long campaignId;
 
     public Long getId() {

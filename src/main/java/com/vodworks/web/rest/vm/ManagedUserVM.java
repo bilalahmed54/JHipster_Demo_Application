@@ -1,6 +1,7 @@
 package com.vodworks.web.rest.vm;
 
 import com.vodworks.service.dto.UserDTO;
+
 import javax.validation.constraints.Size;
 
 /**

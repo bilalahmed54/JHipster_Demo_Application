@@ -1,9 +1,10 @@
 package com.vodworks.domain;
+
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.vodworks.domain.enumeration.CampaignBrandCompType;
 
 import javax.persistence.*;
-import javax.validation.constraints.*;
-
+import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 
 /**
@@ -26,6 +27,11 @@ public class CampaignCompBrand implements Serializable {
     @NotNull
     @Column(name = "comp_brand_name", nullable = false)
     private String compBrandName;
+
+    @NotNull
+    @Enumerated(EnumType.STRING)
+    @Column(name = "type", nullable = false)
+    private CampaignBrandCompType type;
 
     @ManyToOne
     @JsonIgnoreProperties("campaignCompBrands")
@@ -64,6 +70,14 @@ public class CampaignCompBrand implements Serializable {
 
     public void setCompBrandName(String compBrandName) {
         this.compBrandName = compBrandName;
+    }
+
+    public CampaignBrandCompType getType() {
+        return type;
+    }
+
+    public void setType(CampaignBrandCompType type) {
+        this.type = type;
     }
 
     public Campaign getCampaign() {

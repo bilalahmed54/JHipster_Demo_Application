@@ -1,9 +1,10 @@
 package com.vodworks.domain;
+
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import javax.persistence.*;
-import javax.validation.constraints.*;
-
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import java.io.Serializable;
 
 /**
@@ -32,7 +33,7 @@ public class Answer implements Serializable {
     private Respondent respondent;
 
     @OneToOne
-    @JoinColumn(unique = true)
+    @JoinColumn()
     private Campaign campaign;
 
     @OneToOne

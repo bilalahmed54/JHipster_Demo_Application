@@ -1,12 +1,11 @@
 package com.vodworks.domain;
+
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.vodworks.domain.enumeration.CampaignSocialComponentType;
 
 import javax.persistence.*;
-import javax.validation.constraints.*;
-
+import javax.validation.constraints.NotNull;
 import java.io.Serializable;
-
-import com.vodworks.domain.enumeration.CampaignSocialComponentType;
 
 /**
  * A CampaignSocialComponent.

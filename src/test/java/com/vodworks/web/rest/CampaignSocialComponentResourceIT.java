@@ -2,12 +2,12 @@ package com.vodworks.web.rest;
 
 import com.vodworks.JhipsterDemoAppApp;
 import com.vodworks.domain.CampaignSocialComponent;
+import com.vodworks.domain.enumeration.CampaignSocialComponentType;
 import com.vodworks.repository.CampaignSocialComponentRepository;
 import com.vodworks.service.CampaignSocialComponentService;
 import com.vodworks.service.dto.CampaignSocialComponentDTO;
 import com.vodworks.service.mapper.CampaignSocialComponentMapper;
 import com.vodworks.web.rest.errors.ExceptionTranslator;
-
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.MockitoAnnotations;
@@ -29,8 +29,6 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.hamcrest.Matchers.hasItem;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
-
-import com.vodworks.domain.enumeration.CampaignSocialComponentType;
 /**
  * Integration tests for the {@Link CampaignSocialComponentResource} REST controller.
  */

@@ -3,10 +3,12 @@ package com.vodworks.service.mapper;
 import com.vodworks.domain.Authority;
 import com.vodworks.domain.User;
 import com.vodworks.service.dto.UserDTO;
-
 import org.springframework.stereotype.Service;
 
-import java.util.*;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Objects;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 /**

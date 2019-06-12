@@ -1,7 +1,6 @@
 package com.vodworks.repository;
 
 import com.vodworks.domain.Authority;
-
 import org.springframework.data.jpa.repository.JpaRepository;
 
 /**

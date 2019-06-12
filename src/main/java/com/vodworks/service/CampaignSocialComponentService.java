@@ -1,7 +1,9 @@
 package com.vodworks.service;
 
 import com.vodworks.service.dto.CampaignSocialComponentDTO;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.IOException;
 import java.util.List;
 import java.util.Optional;
 
@@ -16,7 +18,7 @@ public interface CampaignSocialComponentService {
      * @param campaignSocialComponentDTO the entity to save.
      * @return the persisted entity.
      */
-    CampaignSocialComponentDTO save(CampaignSocialComponentDTO campaignSocialComponentDTO);
+    CampaignSocialComponentDTO save(CampaignSocialComponentDTO campaignSocialComponentDTO, MultipartFile imageFile) throws IOException;
 
     /**
      * Get all the campaignSocialComponents.

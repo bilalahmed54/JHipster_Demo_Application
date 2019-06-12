@@ -1,8 +1,8 @@
 package com.vodworks.domain;
 
 import javax.persistence.*;
-import javax.validation.constraints.*;
-
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import java.io.Serializable;
 
 /**
@@ -24,7 +24,7 @@ public class Question implements Serializable {
     private String jsonBody;
 
     @OneToOne
-    @JoinColumn(unique = true)
+    @JoinColumn()
     private Campaign campaign;
 
     // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove

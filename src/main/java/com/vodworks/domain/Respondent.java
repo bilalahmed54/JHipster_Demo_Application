@@ -1,14 +1,13 @@
 package com.vodworks.domain;
+
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.vodworks.domain.enumeration.UserTypes;
 
 import javax.persistence.*;
-import javax.validation.constraints.*;
-
+import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
-
-import com.vodworks.domain.enumeration.UserTypes;
 
 /**
  * A Respondent.

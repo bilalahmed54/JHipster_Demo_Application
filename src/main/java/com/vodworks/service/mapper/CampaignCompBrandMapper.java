@@ -1,9 +1,9 @@
 package com.vodworks.service.mapper;
 
-import com.vodworks.domain.*;
+import com.vodworks.domain.CampaignCompBrand;
 import com.vodworks.service.dto.CampaignCompBrandDTO;
-
-import org.mapstruct.*;
+import org.mapstruct.Mapper;
+import org.mapstruct.Mapping;
 
 /**
  * Mapper for the entity {@link CampaignCompBrand} and its DTO {@link CampaignCompBrandDTO}.

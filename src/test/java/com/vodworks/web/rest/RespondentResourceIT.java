@@ -2,12 +2,12 @@ package com.vodworks.web.rest;
 
 import com.vodworks.JhipsterDemoAppApp;
 import com.vodworks.domain.Respondent;
+import com.vodworks.domain.enumeration.UserTypes;
 import com.vodworks.repository.RespondentRepository;
 import com.vodworks.service.RespondentService;
 import com.vodworks.service.dto.RespondentDTO;
 import com.vodworks.service.mapper.RespondentMapper;
 import com.vodworks.web.rest.errors.ExceptionTranslator;
-
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.MockitoAnnotations;
@@ -29,8 +29,6 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.hamcrest.Matchers.hasItem;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
-
-import com.vodworks.domain.enumeration.UserTypes;
 /**
  * Integration tests for the {@Link RespondentResource} REST controller.
  */

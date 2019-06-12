@@ -1,13 +1,12 @@
 package com.vodworks.service.impl;
 
-import com.vodworks.service.AnswerService;
 import com.vodworks.domain.Answer;
 import com.vodworks.repository.AnswerRepository;
+import com.vodworks.service.AnswerService;
 import com.vodworks.service.dto.AnswerDTO;
 import com.vodworks.service.mapper.AnswerMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 

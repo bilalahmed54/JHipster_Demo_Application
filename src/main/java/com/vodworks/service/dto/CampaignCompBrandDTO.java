@@ -1,5 +1,8 @@
 package com.vodworks.service.dto;
-import javax.validation.constraints.*;
+
+import com.vodworks.domain.enumeration.CampaignBrandCompType;
+
+import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.util.Objects;
 
@@ -10,13 +13,15 @@ public class CampaignCompBrandDTO implements Serializable {
 
     private Long id;
 
-    @NotNull
     private String imageFileUrl;
 
     @NotNull
     private String compBrandName;
 
+    @NotNull
+    private CampaignBrandCompType type;
 
+    @NotNull
     private Long campaignId;
 
     public Long getId() {
@@ -41,6 +46,14 @@ public class CampaignCompBrandDTO implements Serializable {
 
     public void setCompBrandName(String compBrandName) {
         this.compBrandName = compBrandName;
+    }
+
+    public CampaignBrandCompType getType() {
+        return type;
+    }
+
+    public void setType(CampaignBrandCompType type) {
+        this.type = type;
     }
 
     public Long getCampaignId() {

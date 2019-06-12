@@ -1,9 +1,9 @@
 package com.vodworks.service.mapper;
 
-import com.vodworks.domain.*;
+import com.vodworks.domain.Campaign;
 import com.vodworks.service.dto.CampaignDTO;
-
-import org.mapstruct.*;
+import org.mapstruct.Mapper;
+import org.mapstruct.Mapping;
 
 /**
  * Mapper for the entity {@link Campaign} and its DTO {@link CampaignDTO}.

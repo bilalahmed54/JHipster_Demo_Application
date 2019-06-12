@@ -1,7 +1,7 @@
 package com.vodworks.repository;
 
 import com.vodworks.domain.Campaign;
-import org.springframework.data.jpa.repository.*;
+import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 

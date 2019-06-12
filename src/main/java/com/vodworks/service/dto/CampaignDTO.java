@@ -1,5 +1,8 @@
 package com.vodworks.service.dto;
-import javax.validation.constraints.*;
+
+import com.vodworks.domain.Campaign;
+
+import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.util.Objects;
 
@@ -10,7 +13,6 @@ public class CampaignDTO implements Serializable {
 
     private Long id;
 
-    @NotNull
     private String uuid;
 
     @NotNull
@@ -43,6 +45,23 @@ public class CampaignDTO implements Serializable {
     @NotNull
     private String instagramAudienceDescription;
 
+    public CampaignDTO() {
+    }
+
+    public CampaignDTO(Campaign campaign) {
+
+        this.uuid = campaign.getUuid();
+        this.sample = campaign.getSample();
+        this.category = campaign.getCategory();
+        this.activity = campaign.getActivity();
+        this.brandGoals = campaign.getBrandGoals();
+        this.projectName = campaign.getProjectName();
+        this.projectDetails = campaign.getProjectDetails();
+        this.brandThirdTrait = campaign.getBrandThirdTrait();
+        this.brandFirstTrait = campaign.getBrandFirstTrait();
+        this.brandSecondTrait = campaign.getBrandSecondTrait();
+        this.instagramAudienceDescription = campaign.getInstagramAudienceDescription();
+    }
 
     public Long getId() {
         return id;

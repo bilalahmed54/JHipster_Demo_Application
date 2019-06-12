@@ -3,7 +3,6 @@ package com.vodworks.security;
 import com.vodworks.JhipsterDemoAppApp;
 import com.vodworks.domain.User;
 import com.vodworks.repository.UserRepository;
-
 import org.apache.commons.lang3.RandomStringUtils;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

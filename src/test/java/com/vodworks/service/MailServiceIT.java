@@ -1,8 +1,7 @@
 package com.vodworks.service;
 
-import com.vodworks.config.Constants;
-
 import com.vodworks.JhipsterDemoAppApp;
+import com.vodworks.config.Constants;
 import com.vodworks.domain.User;
 import io.github.jhipster.config.JHipsterProperties;
 import org.junit.jupiter.api.BeforeEach;

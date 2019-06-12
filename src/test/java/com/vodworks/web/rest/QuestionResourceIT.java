@@ -7,7 +7,6 @@ import com.vodworks.service.QuestionService;
 import com.vodworks.service.dto.QuestionDTO;
 import com.vodworks.service.mapper.QuestionMapper;
 import com.vodworks.web.rest.errors.ExceptionTranslator;
-
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.MockitoAnnotations;

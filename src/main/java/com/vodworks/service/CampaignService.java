@@ -1,6 +1,7 @@
 package com.vodworks.service;
 
 import com.vodworks.service.dto.CampaignDTO;
+import com.vodworks.service.dto.CampaignQuestionDTO;
 
 import java.util.List;
 import java.util.Optional;
@@ -17,6 +18,13 @@ public interface CampaignService {
      * @return the persisted entity.
      */
     CampaignDTO save(CampaignDTO campaignDTO);
+
+    /**
+     * get the "id" campaign.
+     *
+     * @param id the id of the entity.
+     */
+    CampaignQuestionDTO get(Long id);
 
     /**
      * Get all the campaigns.

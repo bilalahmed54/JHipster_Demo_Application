@@ -4,7 +4,6 @@ import com.vodworks.JhipsterDemoAppApp;
 import com.vodworks.config.audit.AuditEventConverter;
 import com.vodworks.domain.PersistentAuditEvent;
 import com.vodworks.repository.PersistenceAuditEventRepository;
-
 import com.vodworks.service.AuditEventService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

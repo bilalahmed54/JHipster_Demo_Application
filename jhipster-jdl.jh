@@ -30,7 +30,8 @@ entity Question {
 
 entity CampaignCompBrand {
 	imageFileUrl String required,
-	compBrandName String required
+	compBrandName String required,
+	type CampaignBrandCompType required,
 }
 
 entity CampaignSocialComponent {
@@ -47,6 +48,10 @@ enum UserTypes {
 
 enum CampaignSocialComponentType {
     CREATIVE, INSTAGRAM
+}
+
+enum CampaignBrandCompType {
+    BRAND, COMP
 }
 
 // defining multiple OneToOne relationships

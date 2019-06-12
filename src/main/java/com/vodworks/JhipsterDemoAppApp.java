@@ -2,9 +2,7 @@ package com.vodworks;
 
 import com.vodworks.config.ApplicationProperties;
 import com.vodworks.config.DefaultProfileUtil;
-
 import io.github.jhipster.config.JHipsterConstants;
-
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
