@@ -1,4 +1,5 @@
-# jhipster_demo_app
+
+# JHipster Demo Application
 
 This application was generated using JHipster 6.0.1, you can find documentation and help at [https://www.jhipster.tech/documentation-archive/v6.0.1](https://www.jhipster.tech/documentation-archive/v6.0.1).
 
