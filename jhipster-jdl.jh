@@ -29,18 +29,24 @@ entity Question {
 }
 
 entity CampaignCompBrand {
-	imageFile ImageBlob required,
+	imageFileUrl String required,
 	compBrandName String required
 }
 
 entity CampaignSocialComponent {
 	caption String required,
-    imageFile ImageBlob required,
-    influencer String required
+	influencer String required,
+    isPrimary Boolean required,
+    imageFileUrl String required,
+    type CampaignSocialComponentType required,
 }
 
 enum UserTypes {
     TEST, CONTROL
+}
+
+enum CampaignSocialComponentType {
+    CREATIVE, INSTAGRAM
 }
 
 // defining multiple OneToOne relationships
