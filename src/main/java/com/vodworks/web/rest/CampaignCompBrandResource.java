@@ -48,7 +48,7 @@ public class CampaignCompBrandResource {
      */
     @PostMapping("/save")
     public ResponseEntity<CampaignCompBrandDTO> createCampaignCompBrand(
-        @Valid @RequestPart CampaignCompBrandDTO campaignCompBrandDTO,
+        @Valid @RequestPart(value = "meta_data", required = true) CampaignCompBrandDTO campaignCompBrandDTO,
         @RequestParam(value = "imageFile", required = true) MultipartFile imageFile) throws URISyntaxException, IOException {
         log.debug("REST request to save CampaignCompBrand : {}", campaignCompBrandDTO);
         if (campaignCompBrandDTO.getId() != null) {
