@@ -1,0 +1,67 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="campaign">
+            <h2><span>Campaign</span> {{campaign.id}}</h2>
+            <hr>
+            <jhi-alert-error></jhi-alert-error>
+            <dl class="row-md jh-entity-details">
+                <dt><span>Uuid</span></dt>
+                <dd>
+                    <span>{{campaign.uuid}}</span>
+                </dd>
+                <dt><span>Category</span></dt>
+                <dd>
+                    <span>{{campaign.category}}</span>
+                </dd>
+                <dt><span>Activity</span></dt>
+                <dd>
+                    <span>{{campaign.activity}}</span>
+                </dd>
+                <dt><span>Project Name</span></dt>
+                <dd>
+                    <span>{{campaign.projectName}}</span>
+                </dd>
+                <dt><span>Project Details</span></dt>
+                <dd>
+                    <span>{{campaign.projectDetails}}</span>
+                </dd>
+                <dt><span>Brand First Trait</span></dt>
+                <dd>
+                    <span>{{campaign.brandFirstTrait}}</span>
+                </dd>
+                <dt><span>Brand Second Trait</span></dt>
+                <dd>
+                    <span>{{campaign.brandSecondTrait}}</span>
+                </dd>
+                <dt><span>Brand Third Trait</span></dt>
+                <dd>
+                    <span>{{campaign.brandThirdTrait}}</span>
+                </dd>
+                <dt><span>Brand Goals</span></dt>
+                <dd>
+                    <span>{{campaign.brandGoals}}</span>
+                </dd>
+                <dt><span>Sample</span></dt>
+                <dd>
+                    <span>{{campaign.sample}}</span>
+                </dd>
+                <dt><span>Instagram Audience Description</span></dt>
+                <dd>
+                    <span>{{campaign.instagramAudienceDescription}}</span>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span> Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/campaign', campaign.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span> Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

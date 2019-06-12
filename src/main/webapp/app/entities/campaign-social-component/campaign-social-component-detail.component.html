@@ -1,0 +1,41 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="campaignSocialComponent">
+            <h2><span>Campaign Social Component</span> {{campaignSocialComponent.id}}</h2>
+            <hr>
+            <jhi-alert-error></jhi-alert-error>
+            <dl class="row-md jh-entity-details">
+                <dt><span>Caption</span></dt>
+                <dd>
+                    <span>{{campaignSocialComponent.caption}}</span>
+                </dd>
+                <dt><span>Influencer</span></dt>
+                <dd>
+                    <span>{{campaignSocialComponent.influencer}}</span>
+                </dd>
+                <dt><span>Image File Url</span></dt>
+                <dd>
+                    <span>{{campaignSocialComponent.imageFileUrl}}</span>
+                </dd>
+                <dt><span>Campaign</span></dt>
+                <dd>
+                    <div *ngIf="campaignSocialComponent.campaignId">
+                        <a [routerLink]="['/campaign', campaignSocialComponent.campaignId, 'view']">{{campaignSocialComponent.campaignId}}</a>
+                    </div>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span> Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/campaign-social-component', campaignSocialComponent.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span> Edit</span>
+            </button>
+        </div>
+    </div>
+</div>
