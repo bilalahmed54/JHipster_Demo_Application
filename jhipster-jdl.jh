@@ -1,0 +1,63 @@
+
+entity Respondent {
+	uuid String unique required,
+    userType UserTypes required,
+    isVideoRecorded Boolean required
+}
+
+entity Campaign {
+	uuid String unique required
+    category String required,
+    activity String required,
+    projectName String required,
+    projectDetails String required,
+    brandFirstTrait String required,
+    brandSecondTrait String required,
+    brandThirdTrait String required,
+    brandGoals String required,
+    sample String required,
+    instagramAudienceDescription String required
+}
+
+entity Answer {
+	answer String required maxlength(1000),
+    subQuestionId Integer
+}
+
+entity Question {
+	jsonBody String required maxlength(8000)
+}
+
+entity CampaignCompBrand {
+	imageFile ImageBlob required,
+	compBrandName String required
+}
+
+entity CampaignSocialComponent {
+	caption String required,
+    imageFile ImageBlob required,
+    influencer String required
+}
+
+enum UserTypes {
+    TEST, CONTROL
+}
+
+// defining multiple OneToOne relationships
+relationship OneToOne {
+    Answer{campaign} to Campaign,
+    Answer{question} to Question,
+    Question{campaign} to Campaign,
+}
+
+// defining multiple OneToMany relationships
+relationship OneToMany {
+    Campaign{respondents} to Respondent,
+    Campaign{competitorLogos} to CampaignCompBrand,
+    Campaign{instagramPhotos} to CampaignSocialComponent,
+    
+    Respondent{campaignAnswers} to Answer
+}
+
+dto * with mapstruct
+service * with serviceImpl
