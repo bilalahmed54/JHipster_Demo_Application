@@ -1,0 +1,33 @@
+{
+  "generator-jhipster": {
+    "promptValues": {
+      "packageName": "com.vodworks"
+    },
+    "jhipsterVersion": "6.0.1",
+    "applicationType": "monolith",
+    "baseName": "jhipster_demo_app",
+    "packageName": "com.vodworks",
+    "packageFolder": "com/vodworks",
+    "serverPort": "8080",
+    "authenticationType": "jwt",
+    "cacheProvider": "no",
+    "websocket": false,
+    "databaseType": "sql",
+    "devDatabaseType": "mysql",
+    "prodDatabaseType": "mysql",
+    "searchEngine": false,
+    "messageBroker": false,
+    "serviceDiscoveryType": "eureka",
+    "buildTool": "maven",
+    "enableSwaggerCodegen": false,
+    "jwtSecretKey": "Nzk3NDhkZTYwODVkZjk0NmVjZWM0ZGE0YmI2NmUzYzRmN2RhN2U4NGM3NzM2OWFmMmU1YmQ4YmI5MzE1MTMzZWFhZjZjZWVjMWZmMTBjMmZjYmUyNGViODJjZTY3MzFjZjQ3ZjI5ODQwZjQ0OTQ2OWVmZjdhNDVjNmVhMjg4MTg=",
+    "testFrameworks": [],
+    "jhiPrefix": "jhi",
+    "entitySuffix": "",
+    "dtoSuffix": "DTO",
+    "otherModules": [],
+    "enableTranslation": false,
+    "clientPackageManager": "npm",
+    "skipClient": true
+  }
+}
