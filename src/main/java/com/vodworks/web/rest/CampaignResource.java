@@ -2,6 +2,7 @@ package com.vodworks.web.rest;
 
 import com.vodworks.service.CampaignService;
 import com.vodworks.service.dto.CampaignDTO;
+import com.vodworks.service.dto.CampaignListDTO;
 import com.vodworks.web.rest.errors.BadRequestAlertException;
 import io.github.jhipster.web.util.HeaderUtil;
 import io.github.jhipster.web.util.ResponseUtil;
@@ -61,8 +62,8 @@ public class CampaignResource {
      *
      * @return the {@link ResponseEntity} with status {@code 200 (OK)} and the list of campaigns in body.
      */
-    @GetMapping("/campaigns")
-    public List<CampaignDTO> getAllCampaigns() {
+    @GetMapping("/all")
+    public CampaignListDTO getAllCampaigns() {
         log.debug("REST request to get all Campaigns");
         return campaignService.findAll();
     }

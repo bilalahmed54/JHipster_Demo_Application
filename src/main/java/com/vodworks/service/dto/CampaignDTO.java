@@ -1,6 +1,8 @@
 package com.vodworks.service.dto;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
 import com.vodworks.domain.Campaign;
+import com.vodworks.domain.CampaignCompBrand;
 
 import javax.validation.constraints.NotNull;
 import java.io.Serializable;
@@ -9,6 +11,7 @@ import java.util.Objects;
 /**
  * A DTO for the {@link com.vodworks.domain.Campaign} entity.
  */
+@JsonInclude(value = JsonInclude.Include.NON_EMPTY)
 public class CampaignDTO implements Serializable {
 
     private Long id;
@@ -44,6 +47,8 @@ public class CampaignDTO implements Serializable {
 
     @NotNull
     private String instagramAudienceDescription;
+
+    private CampaignCompBrand brand;
 
     public CampaignDTO() {
     }
@@ -173,6 +178,14 @@ public class CampaignDTO implements Serializable {
             return false;
         }
         return Objects.equals(getId(), campaignDTO.getId());
+    }
+
+    public CampaignCompBrand getBrand() {
+        return brand;
+    }
+
+    public void setBrand(CampaignCompBrand brand) {
+        this.brand = brand;
     }
 
     @Override

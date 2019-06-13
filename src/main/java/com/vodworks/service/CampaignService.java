@@ -1,6 +1,7 @@
 package com.vodworks.service;
 
 import com.vodworks.service.dto.CampaignDTO;
+import com.vodworks.service.dto.CampaignListDTO;
 import com.vodworks.service.dto.CampaignQuestionDTO;
 
 import java.util.List;
@@ -31,8 +32,7 @@ public interface CampaignService {
      *
      * @return the list of entities.
      */
-    List<CampaignDTO> findAll();
-
+    CampaignListDTO findAll();
 
     /**
      * Get the "id" campaign.

@@ -46,7 +46,7 @@ public class CampaignCompBrandResource {
      * @return the {@link ResponseEntity} with status {@code 201 (Created)} and with body the new campaignCompBrandDTO, or with status {@code 400 (Bad Request)} if the campaignCompBrand has already an ID.
      * @throws URISyntaxException if the Location URI syntax is incorrect.
      */
-    @PostMapping("/save")
+    @RequestMapping(value = "/save", method = RequestMethod.POST)
     public ResponseEntity<CampaignCompBrandDTO> createCampaignCompBrand(
         @Valid @RequestPart(value = "meta_data", required = true) CampaignCompBrandDTO campaignCompBrandDTO,
         @RequestParam(value = "imageFile", required = true) MultipartFile imageFile) throws URISyntaxException, IOException {

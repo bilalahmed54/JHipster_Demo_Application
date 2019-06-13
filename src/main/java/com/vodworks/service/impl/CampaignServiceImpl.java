@@ -1,12 +1,16 @@
 package com.vodworks.service.impl;
 
 import com.vodworks.domain.Campaign;
+import com.vodworks.domain.CampaignCompBrand;
 import com.vodworks.domain.Question;
+import com.vodworks.domain.enumeration.CampaignBrandCompType;
+import com.vodworks.repository.CampaignCompBrandRepository;
 import com.vodworks.repository.CampaignRepository;
 import com.vodworks.repository.QuestionRepository;
 import com.vodworks.service.CampaignService;
 import com.vodworks.service.QuestionService;
 import com.vodworks.service.dto.CampaignDTO;
+import com.vodworks.service.dto.CampaignListDTO;
 import com.vodworks.service.dto.CampaignQuestionDTO;
 import com.vodworks.service.mapper.CampaignMapper;
 import org.slf4j.Logger;
@@ -14,11 +18,10 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.LinkedList;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
-import java.util.stream.Collectors;
 
 /**
  * Service Implementation for managing {@link Campaign}.
@@ -31,14 +34,17 @@ public class CampaignServiceImpl implements CampaignService {
 
     private final CampaignRepository campaignRepository;
 
+    private final CampaignCompBrandRepository campaignCompBrandRepository;
+
     private final QuestionRepository questionRepository;
 
     private final QuestionService questionService;
 
     private final CampaignMapper campaignMapper;
 
-    public CampaignServiceImpl(CampaignRepository campaignRepository, QuestionRepository questionRepository, QuestionService questionService, CampaignMapper campaignMapper) {
+    public CampaignServiceImpl(CampaignRepository campaignRepository, CampaignCompBrandRepository campaignCompBrandRepository, QuestionRepository questionRepository, QuestionService questionService, CampaignMapper campaignMapper) {
         this.campaignRepository = campaignRepository;
+        this.campaignCompBrandRepository = campaignCompBrandRepository;
         this.questionRepository = questionRepository;
         this.questionService = questionService;
         this.campaignMapper = campaignMapper;
@@ -70,7 +76,7 @@ public class CampaignServiceImpl implements CampaignService {
 
         List<Question> questionList = this.questionRepository.findAllByCampaign(campaign);
 
-        if(questionList == null || questionList.size() == 0) {
+        if (questionList == null || questionList.size() == 0) {
             this.questionService.createCampaignQuestions(campaign);
             questionList = this.questionRepository.findAllByCampaign(campaign);
         }
@@ -87,11 +93,36 @@ public class CampaignServiceImpl implements CampaignService {
      */
     @Override
     @Transactional(readOnly = true)
-    public List<CampaignDTO> findAll() {
+    public CampaignListDTO findAll() {
+
+        List<CampaignDTO> campaignDTOS = new ArrayList<>();
+        CampaignListDTO campaignListDTO = new CampaignListDTO();
+
         log.debug("Request to get all Campaigns");
-        return campaignRepository.findAll().stream()
-            .map(campaignMapper::toDto)
-            .collect(Collectors.toCollection(LinkedList::new));
+        List<Campaign> campaigns = campaignRepository.findAll();
+
+        for (Campaign campaign : campaigns) {
+
+            CampaignDTO campaignDTO = new CampaignDTO();
+
+            campaignDTO.setUuid(campaign.getUuid());
+            campaignDTO.setProjectDetails(campaign.getProjectDetails());
+
+            List<CampaignCompBrand> campaignCompBrands = campaignCompBrandRepository.findAllByCampaignAndAndType(campaign, CampaignBrandCompType.BRAND);
+
+            if (campaignCompBrands != null && campaignCompBrands.size() > 0) {
+
+                CampaignCompBrand campaignCompBrand = campaignCompBrands.get(0);
+                campaignCompBrand.setCampaign(null);
+                campaignDTO.setBrand(campaignCompBrand);
+            }
+
+            campaignDTOS.add(campaignDTO);
+        }
+
+        campaignListDTO.setCampaigns(campaignDTOS);
+
+        return campaignListDTO;
     }
 
 
