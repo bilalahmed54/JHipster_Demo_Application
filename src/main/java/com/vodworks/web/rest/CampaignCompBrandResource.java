@@ -1,5 +1,7 @@
 package com.vodworks.web.rest;
 
+import com.fasterxml.jackson.databind.DeserializationFeature;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.vodworks.service.CampaignCompBrandService;
 import com.vodworks.service.dto.CampaignCompBrandDTO;
 import com.vodworks.web.rest.errors.BadRequestAlertException;
@@ -48,13 +50,17 @@ public class CampaignCompBrandResource {
      */
     @RequestMapping(value = "/save", method = RequestMethod.POST)
     public ResponseEntity<CampaignCompBrandDTO> createCampaignCompBrand(
-        @Valid @RequestPart(value = "meta_data", required = true) CampaignCompBrandDTO campaignCompBrandDTO,
+        @Valid @RequestPart(value = "meta_data", required = true) String campaignCompBrandDTOStr,
         @RequestParam(value = "imageFile", required = true) MultipartFile imageFile) throws URISyntaxException, IOException {
-        log.debug("REST request to save CampaignCompBrand : {}", campaignCompBrandDTO);
-        if (campaignCompBrandDTO.getId() != null) {
-            throw new BadRequestAlertException("A new campaignCompBrand cannot already have an ID", ENTITY_NAME, "idexists");
-        }
+        log.debug("REST request to save CampaignCompBrand : {}", campaignCompBrandDTOStr);
+
+        ObjectMapper objectMapper = new ObjectMapper();
+        objectMapper.disable(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES);
+
+        CampaignCompBrandDTO campaignCompBrandDTO = objectMapper.readValue(campaignCompBrandDTOStr, CampaignCompBrandDTO.class);
+
         CampaignCompBrandDTO result = campaignCompBrandService.save(campaignCompBrandDTO, imageFile);
+
         return ResponseEntity.created(new URI("/api/campaign-comp-brands/" + result.getId()))
             .headers(HeaderUtil.createEntityCreationAlert(applicationName, false, ENTITY_NAME, result.getId().toString()))
             .body(result);
