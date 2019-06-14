@@ -15,120 +15,120 @@
 # ===================================================================
 
 eureka:
-  client:
-    enabled: true
-    healthcheck:
-      enabled: true
-    fetch-registry: true
-    register-with-eureka: true
-    instance-info-replication-interval-seconds: 10
-    registry-fetch-interval-seconds: 10
-  instance:
-    appname: jhipster_demo_app
-    instanceId: jhipster_demo_app:${spring.application.instance-id:${random.value}}
-    lease-renewal-interval-in-seconds: 5
-    lease-expiration-duration-in-seconds: 10
-    status-page-url-path: ${management.endpoints.web.base-path}/info
-    health-check-url-path: ${management.endpoints.web.base-path}/health
-    metadata-map:
-      zone: primary # This is needed for the load balancer
-      profile: ${spring.profiles.active}
-      version: #project.version#
-      git-version: ${git.commit.id.describe:}
-      git-commit: ${git.commit.id.abbrev:}
-      git-branch: ${git.branch:}
-ribbon:
-  eureka:
-    enabled: true
-management:
-  endpoints:
-    web:
-      base-path: /management
-      exposure:
-        include: ['configprops', 'env', 'health', 'info', 'jhimetrics', 'logfile', 'loggers', 'prometheus', 'threaddump']
-  endpoint:
-    health:
-      show-details: when-authorized
-    jhimetrics:
-      enabled: true
-  info:
-    git:
-      mode: full
-  health:
-    mail:
-      enabled: false # When using the MailService, configure an SMTP server and set this to true
-  metrics:
-    export:
-      # Prometheus is the default metrics backend
-      prometheus:
+    client:
         enabled: true
-        step: 60
-    enable:
-      http: true
-      jvm: true
-      logback: true
-      process: true
-      system: true
-    distribution:
-      percentiles-histogram:
-        all: true
-      percentiles:
-        all: 0, 0.5, 0.75, 0.95, 0.99, 1.0
-    tags:
-      application: ${spring.application.name}
-    web:
-      server:
-        auto-time-requests: true
+        healthcheck:
+            enabled: true
+        fetch-registry: true
+        register-with-eureka: true
+        instance-info-replication-interval-seconds: 10
+        registry-fetch-interval-seconds: 10
+    instance:
+        appname: jhipster_demo_app
+        instanceId: jhipster_demo_app:${spring.application.instance-id:${random.value}}
+        lease-renewal-interval-in-seconds: 5
+        lease-expiration-duration-in-seconds: 10
+        status-page-url-path: ${management.endpoints.web.base-path}/info
+        health-check-url-path: ${management.endpoints.web.base-path}/health
+        metadata-map:
+            zone: primary # This is needed for the load balancer
+            profile: ${spring.profiles.active}
+            version: #project.version#
+            git-version: ${git.commit.id.describe:}
+            git-commit: ${git.commit.id.abbrev:}
+            git-branch: ${git.branch:}
+ribbon:
+    eureka:
+        enabled: true
+management:
+    endpoints:
+        web:
+            base-path: /management
+            exposure:
+                include: ['configprops', 'env', 'health', 'info', 'jhimetrics', 'logfile', 'loggers', 'prometheus', 'threaddump']
+    endpoint:
+        health:
+            show-details: when-authorized
+        jhimetrics:
+            enabled: true
+    info:
+        git:
+            mode: full
+    health:
+        mail:
+            enabled: false # When using the MailService, configure an SMTP server and set this to true
+    metrics:
+        export:
+            # Prometheus is the default metrics backend
+            prometheus:
+                enabled: true
+                step: 60
+        enable:
+            http: true
+            jvm: true
+            logback: true
+            process: true
+            system: true
+        distribution:
+            percentiles-histogram:
+                all: true
+            percentiles:
+                all: 0, 0.5, 0.75, 0.95, 0.99, 1.0
+        tags:
+            application: ${spring.application.name}
+        web:
+            server:
+                auto-time-requests: true
 
 spring:
-  application:
-    name: jhipster_demo_app
-  jmx:
-    enabled: false
-  data:
+    application:
+        name: jhipster_demo_app
+    jmx:
+        enabled: false
+    data:
+        jpa:
+            repositories:
+                bootstrap-mode: deferred
     jpa:
-      repositories:
-        bootstrap-mode: deferred
-  jpa:
-    open-in-view: false
-    properties:
-      hibernate.jdbc.time_zone: UTC
-    hibernate:
-      ddl-auto: none
-      naming:
-        physical-strategy: org.springframework.boot.orm.jpa.hibernate.SpringPhysicalNamingStrategy
-        implicit-strategy: org.springframework.boot.orm.jpa.hibernate.SpringImplicitNamingStrategy
-  messages:
-    basename: i18n/messages
-  main:
-    allow-bean-definition-overriding: true
-  mvc:
-    favicon:
-      enabled: false
-  task:
-    execution:
-      thread-name-prefix: jhipster-demo-app-task-
-      pool:
-        core-size: 2
-        max-size: 50
-        queue-capacity: 10000
-    scheduling:
-      thread-name-prefix: jhipster-demo-app-scheduling-
-      pool:
-        size: 2
-  thymeleaf:
-    mode: HTML
+        open-in-view: false
+        properties:
+            hibernate.jdbc.time_zone: UTC
+        hibernate:
+            ddl-auto: none
+            naming:
+                physical-strategy: org.springframework.boot.orm.jpa.hibernate.SpringPhysicalNamingStrategy
+                implicit-strategy: org.springframework.boot.orm.jpa.hibernate.SpringImplicitNamingStrategy
+    messages:
+        basename: i18n/messages
+    main:
+        allow-bean-definition-overriding: true
+    mvc:
+        favicon:
+            enabled: false
+    task:
+        execution:
+            thread-name-prefix: jhipster-demo-app-task-
+            pool:
+                core-size: 2
+                max-size: 50
+                queue-capacity: 10000
+        scheduling:
+            thread-name-prefix: jhipster-demo-app-scheduling-
+            pool:
+                size: 2
+    thymeleaf:
+        mode: HTML
 
 server:
-  servlet:
-    session:
-      cookie:
-        http-only: true
+    servlet:
+        session:
+            cookie:
+                http-only: true
 
 # Properties to be exposed on the /info management endpoint
 info:
-  # Comma separated list of profiles that will trigger the ribbon to show
-  display-ribbon-on-profiles: 'dev'
+    # Comma separated list of profiles that will trigger the ribbon to show
+    display-ribbon-on-profiles: 'dev'
 
 # ===================================================================
 # JHipster specific properties
@@ -137,29 +137,29 @@ info:
 # ===================================================================
 
 jhipster:
-  clientApp:
-    name: 'jhipsterDemoAppApp'
-  # By default CORS is disabled. Uncomment to enable.
-  # cors:
-  #     allowed-origins: "*\"
-  #     allowed-methods: "*\"
-  #     allowed-headers: "*\"
-  #     exposed-headers: "Authorization,Link,X-Total-Count\"
-  #     allow-credentials: true
-  #     max-age: 1800
-  mail:
-    from: jhipster_demo_app@localhost
-  swagger:
-    default-include-pattern: /api/.*
-    title: jhipster_demo_app API
-    description: jhipster_demo_app API documentation
-    version: 0.0.1
-    terms-of-service-url:
-    contact-name:
-    contact-url:
-    contact-email:
-    license:
-    license-url:
+    clientApp:
+        name: 'jhipsterDemoAppApp'
+    # By default CORS is disabled. Uncomment to enable.
+    # cors:
+    #     allowed-origins: "*\"
+    #     allowed-methods: "*\"
+    #     allowed-headers: "*\"
+    #     exposed-headers: "Authorization,Link,X-Total-Count\"
+    #     allow-credentials: true
+    #     max-age: 1800
+    mail:
+        from: jhipster_demo_app@localhost
+    swagger:
+        default-include-pattern: /api/.*
+        title: jhipster_demo_app API
+        description: jhipster_demo_app API documentation
+        version: 0.0.1
+        terms-of-service-url:
+        contact-name:
+        contact-url:
+        contact-email:
+        license:
+        license-url:
 # ===================================================================
 # Application specific properties
 # Add your own application properties here, see the ApplicationProperties class
@@ -171,19 +171,19 @@ jhipster:
 #
 #application:
 #    question:
-#        rate-identify: '{\"type\":\"rate-identify\",\"title\":"",\"statement\":\"I identify as:\",\"leftEnd\":{\"type\":\"text\",\"label\":\"<LEFT_LABEL>\",\"valueNumber\":0},\"rightEnd\":{\"type\":\"text\",\"label\":\"<RIGHT_LABEL>\",\"valueNumber\":100}}'
-#        text-thinkof: "{\"type\":\"text-thinkof\",\"title\":\"Brand Questions\",\"statement\":\"When you think of <BRAND_CATEGORY>, what brands have you heard of?\",\"textLimit\":1000}"
-#        brands-heard-of: "{\"type\":\"brands-heard-of\",\"title\":\"Brand Questions\",\"statement\":\"Which of these brands have you heard of?\",\"questions\":[{\"id\":0,\"controlType\":\"image-selection\",\"valueString\":\"<BRAND_NAME>\",\"label\":\"<BRAND_LOGO_URL>\"},{\"id\":1,\"controlType\":\"image-selection\",\"valueString\":\"<COMPETITOR_1_NAME>\",\"label\":\"<COMPETITOR_1_LOGO_URL>\"},{\"id\":2,\"controlType\":\"image-selection\",\"valueString\":\"<COMPETITOR_2_NAME>\",\"label\":\"<COMPETITOR_2_LOGO_URL>\"}]}"
-#        rate-opinion: "{\"type\":\"rate-opinion\",\"title\":\"Brand Questions\",\"statement\":\"What is your opinion of these brands? (1 - negative, 10 - positive)\",\"statementImageUrl\":\"<COMPETITOR_LOGO_URL>\"}"
-#        rate-purchase: "{\"type\":\"rate-purchase\",\"title\":\"Brand Questions\",\"statement\":\"How likely would you be to purchase the following <BRAND_CATEGORY> products, in the next 3  months?\",\"statementImageUrl\":\"<COMPETITOR_LOGO_URL>\",\"leftEnd\":{\"type\":\"text\",\"label\":\"Very unlikely\",\"valueNumber\":0},\"rightEnd\":{\"type\":\"text\",\"label\":\"Very likely\",\"valueNumber\":100}}"
-#        yes-no: "{\"type\":\"yes-no\",\"title\":"",\"statement\":\"<BRAND_TRAIT>\",\"option\":{\"type\":\"imgUrl\",\"valueString\":\"yes/no\",\"label\":\"<COMPETITOR_LOGO_URL>\"}}"
-#        rate-creative: "{\"type\":\"rate-creative\",\"title\":\"Creative Questions\",\"statement\":\"<CREATIVE_QUESTION_STATEMENT>\",\"leftEnd\":{\"type\":\"text\",\"label\":\"Very unlikely\",\"valueNumber\":0},\"rightEnd\":{\"type\":\"text\",\"label\":\"Very likely\",\"valueNumber\":100}}"
-#        text-remember: "{\"type\":\"text-remember\",\"title\":\"Creative Questions\",\"statement\":\"Which brands did you see in the post?\",\"textLimit\":1000,\"answerOptions\":[{\"type\":\"text\",\"valueString\":\"I can't remember\",\"label\":\"I can't remember\"},{\"type\":\"text\",\"valueString\":\"I couldn't tell\",\"label\":\"I couldn't tell\"},{\"type\":\"text\",\"valueString\":\"There was no brand\",\"label\":\"There was no brand\"}]}"
-#        rate-purchase-again: "{\"type\":\"rate-purchase-again\",\"title\":\"Brand Questions\",\"statement\":\"How likely would you be to continue purchasing the following brands time and again?\",\"questions\":[{\"id\":0,\"controlType\":\"image-slider\",\"statementImageUrl\":\"<BRAND_LOGO_URL>\",\"leftEnd\":{\"type\":\"text\",\"label\":\"Very unlikely\",\"valueNumber\":0},\"rightEnd\":{\"type\":\"text\",\"label\":\"Very likely\",\"valueNumber\":100}},{\"id\":1,\"controlType\":\"image-slider\",\"statementImageUrl\":\"<COMPETITOR_1_LOGO_URL>\",\"leftEnd\":{\"type\":\"text\",\"label\":\"Very unlikely\",\"valueNumber\":0},\"rightEnd\":{\"type\":\"text\",\"label\":\"Very likely\",\"valueNumber\":100}},{\"id\":2,\"controlType\":\"image-slider\",\"statementImageUrl\":\"<COMPETITOR_2_LOGO_URL>\",\"leftEnd\":{\"type\":\"text\",\"label\":\"Very unlikely\",\"valueNumber\":0},\"rightEnd\":{\"type\":\"text\",\"label\":\"Very likely\",\"valueNumber\":100}}]}"
-#        rate-recommend: "{\"type\":\"rate-recommend\",\"title\":\"Brand Questions\",\"statement\":\"How likely would you be to recommend the following brands to friends and family?\",\"questions\":[{\"id\":0,\"controlType\":\"image-slider\",\"statementImageUrl\":\"<BRAND_LOGO_URL>\",\"leftEnd\":{\"type\":\"text\",\"label\":\"Very unlikely\",\"valueNumber\":0},\"rightEnd\":{\"type\":\"text\",\"label\":\"Very likely\",\"valueNumber\":100}},{\"id\":1,\"controlType\":\"image-slider\",\"statementImageUrl\":\"<COMPETITOR_1_LOGO_URL>\",\"leftEnd\":{\"type\":\"text\",\"label\":\"Very unlikely\",\"valueNumber\":0},\"rightEnd\":{\"type\":\"text\",\"label\":\"Very likely\",\"valueNumber\":100}},{\"id\":2,\"controlType\":\"image-slider\",\"statementImageUrl\":\"<COMPETITOR_2_LOGO_URL>\",\"leftEnd\":{\"type\":\"text\",\"label\":\"Very unlikely\",\"valueNumber\":0},\"rightEnd\":{\"type\":\"text\",\"label\":\"Very likely\",\"valueNumber\":100}}]}"
-#        rate-influencer: "{\"type\":\"rate-influencer\",\"title\":\"Influencer Questions\",\"statement\":\"To what extent did the influencer fit the brand in the post?\",\"controlType\":\"text-slider\",\"leftEnd\":{\"type\":\"text\",\"label\":\"Not at all\",\"valueNumber\":0},\"rightEnd\":{\"type\":\"text\",\"label\":\"A great deal\",\"valueNumber\":100}}"
-#        sub-influencer: "{\"type\":\"sub-influencer\",\"title\":\"Influencer Questions\",\"statement\":\"To what extent do you think the influencer is:\",\"questions\":[{\"id\":0,\"controlType\":\"text-slider\",\"statement\":\"Genuine?\",\"leftEnd\":{\"type\":\"text\",\"label\":\"Not at all\",\"valueNumber\":0},\"rightEnd\":{\"type\":\"text\",\"label\":\"A great deal\",\"valueNumber\":100}},{\"id\":1,\"controlType\":\"text-slider\",\"statement\":\"Relevant to you?\",\"leftEnd\":{\"type\":\"text\",\"label\":\"Not at all\",\"valueNumber\":0},\"rightEnd\":{\"type\":\"text\",\"label\":\"A great deal\",\"valueNumber\":100}},{\"id\":2,\"controlType\":\"text-slider\",\"statement\":\"Credible?\",\"leftEnd\":{\"type\":\"text\",\"label\":\"Not at all\",\"valueNumber\":0},\"rightEnd\":{\"type\":\"text\",\"label\":\"A great deal\",\"valueNumber\":100}},{\"id\":3,\"controlType\":\"text-slider\",\"statement\":\"Cool?\",\"leftEnd\":{\"type\":\"text\",\"label\":\"Not at all\",\"valueNumber\":0},\"rightEnd\":{\"type\":\"text\",\"label\":\"A great deal\",\"valueNumber\":100}},{\"id\":4,\"controlType\":\"text-slider\",\"statement\":\"Relatable?\",\"leftEnd\":{\"type\":\"text\",\"label\":\"Not at all\",\"valueNumber\":0},\"rightEnd\":{\"type\":\"text\",\"label\":\"A great deal\",\"valueNumber\":100}},{\"id\":5,\"controlType\":\"text-slider\",\"statement\":\"Original?\",\"leftEnd\":{\"type\":\"text\",\"label\":\"Not at all\",\"valueNumber\":0},\"rightEnd\":{\"type\":\"text\",\"label\":\"A great deal\",\"valueNumber\":100}},{\"id\":6,\"controlType\":\"text-slider\",\"statement\":\"Innovative?\",\"leftEnd\":{\"type\":\"text\",\"label\":\"Not at all\",\"valueNumber\":0},\"rightEnd\":{\"type\":\"text\",\"label\":\"A great deal\",\"valueNumber\":100}},{\"id\":7,\"controlType\":\"text-slider\",\"statement\":\"Empowering?\",\"leftEnd\":{\"type\":\"text\",\"label\":\"Not at all\",\"valueNumber\":0},\"rightEnd\":{\"type\":\"text\",\"label\":\"A great deal\",\"valueNumber\":100}},{\"id\":8,\"controlType\":\"text-slider\",\"statement\":\"Trustworthy?\",\"leftEnd\":{\"type\":\"text\",\"label\":\"Not at all\",\"valueNumber\":0},\"rightEnd\":{\"type\":\"text\",\"label\":\"A great deal\",\"valueNumber\":100}}]}"
-#        sub-likely: "{\"type\":\"sub-likely\",\"title\":\"Influencer Questions\",\"statement\":\"How likely are you to:\",\"questions\":[{\"id\":0,\"controlType\":\"text-slider\",\"statement\":\"Recommend the influencer to your friends or family?\",\"leftEnd\":{\"type\":\"text\",\"label\":\"Very unlikely\",\"valueNumber\":0},\"rightEnd\":{\"type\":\"text\",\"label\":\"Very likely\",\"valueNumber\":100}},{\"id\":1,\"controlType\":\"text-slider\",\"statement\":\"Be inspired by the influencer?\",\"leftEnd\":{\"type\":\"text\",\"label\":\"Very unlikely\",\"valueNumber\":0},\"rightEnd\":{\"type\":\"text\",\"label\":\"Very likely\",\"valueNumber\":100}},{\"id\":2,\"controlType\":\"text-slider\",\"statement\":\"Purchase the products promoted by the influencer?\",\"leftEnd\":{\"type\":\"text\",\"label\":\"Very unlikely\",\"valueNumber\":0},\"rightEnd\":{\"type\":\"text\",\"label\":\"Very likely\",\"valueNumber\":100}}]}"
-#        sub-grid-creative-emotion: "{\"type\":\"sub-grid-creative-emotion\",\"title\":\"Creative Questions\",\"statement\":\"What emotions did you feel while viewing this post?\",\"subStatement\":\"For the emotions you have selected, how intensely did you feel them?\",\"questions\":[{\"id\":0,\"controlType\":\"text-slider\",\"statement\":\"Sympathy\",\"leftEnd\":{\"type\":\"text\",\"label\":\"Not very strongly\",\"valueNumber\":0},\"rightEnd\":{\"type\":\"text\",\"label\":\"Extremely strongly\",\"valueNumber\":100}},{\"id\":1,\"controlType\":\"text-slider\",\"statement\":\"Satisfaction\",\"leftEnd\":{\"type\":\"text\",\"label\":\"Not very strongly\",\"valueNumber\":0},\"rightEnd\":{\"type\":\"text\",\"label\":\"Extremely strongly\",\"valueNumber\":100}},{\"id\":2,\"controlType\":\"text-slider\",\"statement\":\"Admiration\",\"leftEnd\":{\"type\":\"text\",\"label\":\"Not very strongly\",\"valueNumber\":0},\"rightEnd\":{\"type\":\"text\",\"label\":\"Extremely strongly\",\"valueNumber\":100}},{\"id\":3,\"controlType\":\"text-slider\",\"statement\":\"Excitement\",\"leftEnd\":{\"type\":\"text\",\"label\":\"Not very strongly\",\"valueNumber\":0},\"rightEnd\":{\"type\":\"text\",\"label\":\"Extremely strongly\",\"valueNumber\":100}},{\"id\":4,\"controlType\":\"text-slider\",\"statement\":\"Triumph\",\"leftEnd\":{\"type\":\"text\",\"label\":\"Not very strongly\",\"valueNumber\":0},\"rightEnd\":{\"type\":\"text\",\"label\":\"Extremely strongly\",\"valueNumber\":100}},{\"id\":5,\"controlType\":\"text-slider\",\"statement\":\"Warmth\",\"leftEnd\":{\"type\":\"text\",\"label\":\"Not very strongly\",\"valueNumber\":0},\"rightEnd\":{\"type\":\"text\",\"label\":\"Extremely strongly\",\"valueNumber\":100}},{\"id\":6,\"controlType\":\"text-slider\",\"statement\":\"Nostalgia\",\"leftEnd\":{\"type\":\"text\",\"label\":\"Not very strongly\",\"valueNumber\":0},\"rightEnd\":{\"type\":\"text\",\"label\":\"Extremely strongly\",\"valueNumber\":100}},{\"id\":7,\"controlType\":\"text-slider\",\"statement\":\"Awe\",\"leftEnd\":{\"type\":\"text\",\"label\":\"Not very strongly\",\"valueNumber\":0},\"rightEnd\":{\"type\":\"text\",\"label\":\"Extremely strongly\",\"valueNumber\":100}},{\"id\":8,\"controlType\":\"text-slider\",\"statement\":\"Amusement\",\"leftEnd\":{\"type\":\"text\",\"label\":\"Not very strongly\",\"valueNumber\":0},\"rightEnd\":{\"type\":\"text\",\"label\":\"Extremely strongly\",\"valueNumber\":100}},{\"id\":9,\"controlType\":\"text-slider\",\"statement\":\"Romance\",\"leftEnd\":{\"type\":\"text\",\"label\":\"Not very strongly\",\"valueNumber\":0},\"rightEnd\":{\"type\":\"text\",\"label\":\"Extremely strongly\",\"valueNumber\":100}},{\"id\":10,\"controlType\":\"text-slider\",\"statement\":\"Interest\",\"leftEnd\":{\"type\":\"text\",\"label\":\"Not very strongly\",\"valueNumber\":0},\"rightEnd\":{\"type\":\"text\",\"label\":\"Extremely strongly\",\"valueNumber\":100}},{\"id\":11,\"controlType\":\"text-slider\",\"statement\":\"Calmness\",\"leftEnd\":{\"type\":\"text\",\"label\":\"Not very strongly\",\"valueNumber\":0},\"rightEnd\":{\"type\":\"text\",\"label\":\"Extremely strongly\",\"valueNumber\":100}},{\"id\":12,\"controlType\":\"text-slider\",\"statement\":\"Sexual desire\",\"leftEnd\":{\"type\":\"text\",\"label\":\"Not very strongly\",\"valueNumber\":0},\"rightEnd\":{\"type\":\"text\",\"label\":\"Extremely strongly\",\"valueNumber\":100}},{\"id\":13,\"controlType\":\"text-slider\",\"statement\":\"Aesthetic appreciation\",\"leftEnd\":{\"type\":\"text\",\"label\":\"Not very strongly\",\"valueNumber\":0},\"rightEnd\":{\"type\":\"text\",\"label\":\"Extremely strongly\",\"valueNumber\":100}},{\"id\":14,\"controlType\":\"text-slider\",\"statement\":\"Inspiration\",\"leftEnd\":{\"type\":\"text\",\"label\":\"Not very strongly\",\"valueNumber\":0},\"rightEnd\":{\"type\":\"text\",\"label\":\"Extremely strongly\",\"valueNumber\":100}},{\"id\":15,\"controlType\":\"text-slider\",\"statement\":\"Joy\",\"leftEnd\":{\"type\":\"text\",\"label\":\"Not very strongly\",\"valueNumber\":0},\"rightEnd\":{\"type\":\"text\",\"label\":\"Extremely strongly\",\"valueNumber\":100}},{\"id\":16,\"controlType\":\"text-slider\",\"statement\":\"Adoration\",\"leftEnd\":{\"type\":\"text\",\"label\":\"Not very strongly\",\"valueNumber\":0},\"rightEnd\":{\"type\":\"text\",\"label\":\"Extremely strongly\",\"valueNumber\":100}},{\"id\":17,\"controlType\":\"text-slider\",\"statement\":\"Entrancement\",\"leftEnd\":{\"type\":\"text\",\"label\":\"Not very strongly\",\"valueNumber\":0},\"rightEnd\":{\"type\":\"text\",\"label\":\"Extremely strongly\",\"valueNumber\":100}},{\"id\":18,\"controlType\":\"text-slider\",\"statement\":\"Horror\",\"leftEnd\":{\"type\":\"text\",\"label\":\"Not very strongly\",\"valueNumber\":0},\"rightEnd\":{\"type\":\"text\",\"label\":\"Extremely strongly\",\"valueNumber\":100}},{\"id\":19,\"controlType\":\"text-slider\",\"statement\":\"Disgust\",\"leftEnd\":{\"type\":\"text\",\"label\":\"Not very strongly\",\"valueNumber\":0},\"rightEnd\":{\"type\":\"text\",\"label\":\"Extremely strongly\",\"valueNumber\":100}},{\"id\":20,\"controlType\":\"text-slider\",\"statement\":\"Fear\",\"leftEnd\":{\"type\":\"text\",\"label\":\"Not very strongly\",\"valueNumber\":0},\"rightEnd\":{\"type\":\"text\",\"label\":\"Extremely strongly\",\"valueNumber\":100}},{\"id\":21,\"controlType\":\"text-slider\",\"statement\":\"Confusion\",\"leftEnd\":{\"type\":\"text\",\"label\":\"Not very strongly\",\"valueNumber\":0},\"rightEnd\":{\"type\":\"text\",\"label\":\"Extremely strongly\",\"valueNumber\":100}},{\"id\":22,\"controlType\":\"text-slider\",\"statement\":\"Sadness\",\"leftEnd\":{\"type\":\"text\",\"label\":\"Not very strongly\",\"valueNumber\":0},\"rightEnd\":{\"type\":\"text\",\"label\":\"Extremely strongly\",\"valueNumber\":100}},{\"id\":23,\"controlType\":\"text-slider\",\"statement\":\"Craving\",\"leftEnd\":{\"type\":\"text\",\"label\":\"Not very strongly\",\"valueNumber\":0},\"rightEnd\":{\"type\":\"text\",\"label\":\"Extremely strongly\",\"valueNumber\":100}},{\"id\":24,\"controlType\":\"text-slider\",\"statement\":\"Anxiety\",\"leftEnd\":{\"type\":\"text\",\"label\":\"Not very strongly\",\"valueNumber\":0},\"rightEnd\":{\"type\":\"text\",\"label\":\"Extremely strongly\",\"valueNumber\":100}},{\"id\":25,\"controlType\":\"text-slider\",\"statement\":\"Envy\",\"leftEnd\":{\"type\":\"text\",\"label\":\"Not very strongly\",\"valueNumber\":0},\"rightEnd\":{\"type\":\"text\",\"label\":\"Extremely strongly\",\"valueNumber\":100}},{\"id\":26,\"controlType\":\"text-slider\",\"statement\":\"Empathetic pain\",\"leftEnd\":{\"type\":\"text\",\"label\":\"Not very strongly\",\"valueNumber\":0},\"rightEnd\":{\"type\":\"text\",\"label\":\"Extremely strongly\",\"valueNumber\":100}},{\"id\":27,\"controlType\":\"text-slider\",\"statement\":\"Awkwardness\",\"leftEnd\":{\"type\":\"text\",\"label\":\"Not very strongly\",\"valueNumber\":0},\"rightEnd\":{\"type\":\"text\",\"label\":\"Extremely strongly\",\"valueNumber\":100}},{\"id\":28,\"controlType\":\"text-slider\",\"statement\":\"Boredom\",\"leftEnd\":{\"type\":\"text\",\"label\":\"Not very strongly\",\"valueNumber\":0},\"rightEnd\":{\"type\":\"text\",\"label\":\"Extremely strongly\",\"valueNumber\":100}},{\"id\":29,\"controlType\":\"text-slider\",\"statement\":\"Contempt\",\"leftEnd\":{\"type\":\"text\",\"label\":\"Not very strongly\",\"valueNumber\":0},\"rightEnd\":{\"type\":\"text\",\"label\":\"Extremely strongly\",\"valueNumber\":100}}]}"
-#        rate-identifys.parameters: "Cautious:Open,Spontaneous:Conscientious,Introverted:Extroverted,Challenging:Cooperative,Calm:Passionate"
-#        rate-creatives.parameters: "Find out more about the product in the post?,Purchase the product in the post?,Share this post on social media?"
+#        rateIdentify: '{"type":"rate-identify","title":"","statement":"I identify as:","leftEnd":{"type":"text","label":"<LEFT_LABEL>","valueNumber":0},"rightEnd":{"type":"text","label":"<RIGHT_LABEL>","valueNumber":100}}'
+#        textThinkOf: '{"type":"text-thinkof","title":"Brand Questions","statement":"When you think of <BRAND_CATEGORY>, what brands have you heard of?","textLimit":1000}'
+#        brandsHeardOf: '{"type":"brands-heard-of","title":"Brand Questions","statement":"Which of these brands have you heard of?","questions":[{"id":0,"controlType":"image-selection","valueString":"<BRAND_NAME>","label":"<BRAND_LOGO_URL>"},{"id":1,"controlType":"image-selection","valueString":"<COMPETITOR_1_NAME>","label":"<COMPETITOR_1_LOGO_URL>"},{"id":2,"controlType":"image-selection","valueString":"<COMPETITOR_2_NAME>","label":"<COMPETITOR_2_LOGO_URL>"}]}'
+#        rateOpinion: '{"type":"rate-opinion","title":"Brand Questions","statement":"What is your opinion of these brands? (1 - negative, 10 - positive)","statementImageUrl":"<COMPETITOR_LOGO_URL>"}'
+#        ratePurchase: '{"type":"rate-purchase","title":"Brand Questions","statement":"How likely would you be to purchase the following <BRAND_CATEGORY> products, in the next 3  months?","statementImageUrl":"<COMPETITOR_LOGO_URL>","leftEnd":{"type":"text","label":"Very unlikely","valueNumber":0},"rightEnd":{"type":"text","label":"Very likely","valueNumber":100}}'
+#        yesNo: '{"type":"yes-no","title":"","statement":"<BRAND_TRAIT>","option":{"type":"imgUrl","valueString":"yes/no","label":"<COMPETITOR_LOGO_URL>"}}'
+#        rateCreative: '{"type":"rate-creative","title":"Creative Questions","statement":"<CREATIVE_QUESTION_STATEMENT>","leftEnd":{"type":"text","label":"Very unlikely","valueNumber":0},"rightEnd":{"type":"text","label":"Very likely","valueNumber":100}}'
+#        textRemember: '{"type":"text-remember","title":"Creative Questions","statement":"Which brands did you see in the post?","textLimit":1000,"answerOptions":[{"type":"text","valueString":"I cant remember","label":"I cant remember"},{"type":"text","valueString":"I couldnt tell","label":"I couldnt tell"},{"type":"text","valueString":"There was no brand","label":"There was no brand"}]}'
+#        ratePurchaseAgain: '{"type":"rate-purchase-again","title":"Brand Questions","statement":"How likely would you be to continue purchasing the following brands time and again?","questions":[{"id":0,"controlType":"image-slider","statementImageUrl":"<BRAND_LOGO_URL>","leftEnd":{"type":"text","label":"Very unlikely","valueNumber":0},"rightEnd":{"type":"text","label":"Very likely","valueNumber":100}},{"id":1,"controlType":"image-slider","statementImageUrl":"<COMPETITOR_1_LOGO_URL>","leftEnd":{"type":"text","label":"Very unlikely","valueNumber":0},"rightEnd":{"type":"text","label":"Very likely","valueNumber":100}},{"id":2,"controlType":"image-slider","statementImageUrl":"<COMPETITOR_2_LOGO_URL>","leftEnd":{"type":"text","label":"Very unlikely","valueNumber":0},"rightEnd":{"type":"text","label":"Very likely","valueNumber":100}}]}'
+#        rateRecommend: '{"type":"rate-recommend","title":"Brand Questions","statement":"How likely would you be to recommend the following brands to friends and family?","questions":[{"id":0,"controlType":"image-slider","statementImageUrl":"<BRAND_LOGO_URL>","leftEnd":{"type":"text","label":"Very unlikely","valueNumber":0},"rightEnd":{"type":"text","label":"Very likely","valueNumber":100}},{"id":1,"controlType":"image-slider","statementImageUrl":"<COMPETITOR_1_LOGO_URL>","leftEnd":{"type":"text","label":"Very unlikely","valueNumber":0},"rightEnd":{"type":"text","label":"Very likely","valueNumber":100}},{"id":2,"controlType":"image-slider","statementImageUrl":"<COMPETITOR_2_LOGO_URL>","leftEnd":{"type":"text","label":"Very unlikely","valueNumber":0},"rightEnd":{"type":"text","label":"Very likely","valueNumber":100}}]}'
+#        rateInfluencer: '{"type":"rate-influencer","title":"Influencer Questions","statement":"To what extent did the influencer fit the brand in the post?","controlType":"text-slider","leftEnd":{"type":"text","label":"Not at all","valueNumber":0},"rightEnd":{"type":"text","label":"A great deal","valueNumber":100}}'
+#        subInfluencer: '{"type":"sub-influencer","title":"Influencer Questions","statement":"To what extent do you think the influencer is:","questions":[{"id":0,"controlType":"text-slider","statement":"Genuine?","leftEnd":{"type":"text","label":"Not at all","valueNumber":0},"rightEnd":{"type":"text","label":"A great deal","valueNumber":100}},{"id":1,"controlType":"text-slider","statement":"Relevant to you?","leftEnd":{"type":"text","label":"Not at all","valueNumber":0},"rightEnd":{"type":"text","label":"A great deal","valueNumber":100}},{"id":2,"controlType":"text-slider","statement":"Credible?","leftEnd":{"type":"text","label":"Not at all","valueNumber":0},"rightEnd":{"type":"text","label":"A great deal","valueNumber":100}},{"id":3,"controlType":"text-slider","statement":"Cool?","leftEnd":{"type":"text","label":"Not at all","valueNumber":0},"rightEnd":{"type":"text","label":"A great deal","valueNumber":100}},{"id":4,"controlType":"text-slider","statement":"Relatable?","leftEnd":{"type":"text","label":"Not at all","valueNumber":0},"rightEnd":{"type":"text","label":"A great deal","valueNumber":100}},{"id":5,"controlType":"text-slider","statement":"Original?","leftEnd":{"type":"text","label":"Not at all","valueNumber":0},"rightEnd":{"type":"text","label":"A great deal","valueNumber":100}},{"id":6,"controlType":"text-slider","statement":"Innovative?","leftEnd":{"type":"text","label":"Not at all","valueNumber":0},"rightEnd":{"type":"text","label":"A great deal","valueNumber":100}},{"id":7,"controlType":"text-slider","statement":"Empowering?","leftEnd":{"type":"text","label":"Not at all","valueNumber":0},"rightEnd":{"type":"text","label":"A great deal","valueNumber":100}},{"id":8,"controlType":"text-slider","statement":"Trustworthy?","leftEnd":{"type":"text","label":"Not at all","valueNumber":0},"rightEnd":{"type":"text","label":"A great deal","valueNumber":100}}]}'
+#        subLikely: '{"type":"sub-likely","title":"Influencer Questions","statement":"How likely are you to:","questions":[{"id":0,"controlType":"text-slider","statement":"Recommend the influencer to your friends or family?","leftEnd":{"type":"text","label":"Very unlikely","valueNumber":0},"rightEnd":{"type":"text","label":"Very likely","valueNumber":100}},{"id":1,"controlType":"text-slider","statement":"Be inspired by the influencer?","leftEnd":{"type":"text","label":"Very unlikely","valueNumber":0},"rightEnd":{"type":"text","label":"Very likely","valueNumber":100}},{"id":2,"controlType":"text-slider","statement":"Purchase the products promoted by the influencer?","leftEnd":{"type":"text","label":"Very unlikely","valueNumber":0},"rightEnd":{"type":"text","label":"Very likely","valueNumber":100}}]}'
+#        subGridCreativeEmotion: '{"type":"sub-grid-creative-emotion","title":"Creative Questions","statement":"What emotions did you feel while viewing this post?","subStatement":"For the emotions you have selected, how intensely did you feel them?","questions":[{"id":0,"controlType":"text-slider","statement":"Sympathy","leftEnd":{"type":"text","label":"Not very strongly","valueNumber":0},"rightEnd":{"type":"text","label":"Extremely strongly","valueNumber":100}},{"id":1,"controlType":"text-slider","statement":"Satisfaction","leftEnd":{"type":"text","label":"Not very strongly","valueNumber":0},"rightEnd":{"type":"text","label":"Extremely strongly","valueNumber":100}},{"id":2,"controlType":"text-slider","statement":"Admiration","leftEnd":{"type":"text","label":"Not very strongly","valueNumber":0},"rightEnd":{"type":"text","label":"Extremely strongly","valueNumber":100}},{"id":3,"controlType":"text-slider","statement":"Excitement","leftEnd":{"type":"text","label":"Not very strongly","valueNumber":0},"rightEnd":{"type":"text","label":"Extremely strongly","valueNumber":100}},{"id":4,"controlType":"text-slider","statement":"Triumph","leftEnd":{"type":"text","label":"Not very strongly","valueNumber":0},"rightEnd":{"type":"text","label":"Extremely strongly","valueNumber":100}},{"id":5,"controlType":"text-slider","statement":"Warmth","leftEnd":{"type":"text","label":"Not very strongly","valueNumber":0},"rightEnd":{"type":"text","label":"Extremely strongly","valueNumber":100}},{"id":6,"controlType":"text-slider","statement":"Nostalgia","leftEnd":{"type":"text","label":"Not very strongly","valueNumber":0},"rightEnd":{"type":"text","label":"Extremely strongly","valueNumber":100}},{"id":7,"controlType":"text-slider","statement":"Awe","leftEnd":{"type":"text","label":"Not very strongly","valueNumber":0},"rightEnd":{"type":"text","label":"Extremely strongly","valueNumber":100}},{"id":8,"controlType":"text-slider","statement":"Amusement","leftEnd":{"type":"text","label":"Not very strongly","valueNumber":0},"rightEnd":{"type":"text","label":"Extremely strongly","valueNumber":100}},{"id":9,"controlType":"text-slider","statement":"Romance","leftEnd":{"type":"text","label":"Not very strongly","valueNumber":0},"rightEnd":{"type":"text","label":"Extremely strongly","valueNumber":100}},{"id":10,"controlType":"text-slider","statement":"Interest","leftEnd":{"type":"text","label":"Not very strongly","valueNumber":0},"rightEnd":{"type":"text","label":"Extremely strongly","valueNumber":100}},{"id":11,"controlType":"text-slider","statement":"Calmness","leftEnd":{"type":"text","label":"Not very strongly","valueNumber":0},"rightEnd":{"type":"text","label":"Extremely strongly","valueNumber":100}},{"id":12,"controlType":"text-slider","statement":"Sexual desire","leftEnd":{"type":"text","label":"Not very strongly","valueNumber":0},"rightEnd":{"type":"text","label":"Extremely strongly","valueNumber":100}},{"id":13,"controlType":"text-slider","statement":"Aesthetic appreciation","leftEnd":{"type":"text","label":"Not very strongly","valueNumber":0},"rightEnd":{"type":"text","label":"Extremely strongly","valueNumber":100}},{"id":14,"controlType":"text-slider","statement":"Inspiration","leftEnd":{"type":"text","label":"Not very strongly","valueNumber":0},"rightEnd":{"type":"text","label":"Extremely strongly","valueNumber":100}},{"id":15,"controlType":"text-slider","statement":"Joy","leftEnd":{"type":"text","label":"Not very strongly","valueNumber":0},"rightEnd":{"type":"text","label":"Extremely strongly","valueNumber":100}},{"id":16,"controlType":"text-slider","statement":"Adoration","leftEnd":{"type":"text","label":"Not very strongly","valueNumber":0},"rightEnd":{"type":"text","label":"Extremely strongly","valueNumber":100}},{"id":17,"controlType":"text-slider","statement":"Entrancement","leftEnd":{"type":"text","label":"Not very strongly","valueNumber":0},"rightEnd":{"type":"text","label":"Extremely strongly","valueNumber":100}},{"id":18,"controlType":"text-slider","statement":"Horror","leftEnd":{"type":"text","label":"Not very strongly","valueNumber":0},"rightEnd":{"type":"text","label":"Extremely strongly","valueNumber":100}},{"id":19,"controlType":"text-slider","statement":"Disgust","leftEnd":{"type":"text","label":"Not very strongly","valueNumber":0},"rightEnd":{"type":"text","label":"Extremely strongly","valueNumber":100}},{"id":20,"controlType":"text-slider","statement":"Fear","leftEnd":{"type":"text","label":"Not very strongly","valueNumber":0},"rightEnd":{"type":"text","label":"Extremely strongly","valueNumber":100}},{"id":21,"controlType":"text-slider","statement":"Confusion","leftEnd":{"type":"text","label":"Not very strongly","valueNumber":0},"rightEnd":{"type":"text","label":"Extremely strongly","valueNumber":100}},{"id":22,"controlType":"text-slider","statement":"Sadness","leftEnd":{"type":"text","label":"Not very strongly","valueNumber":0},"rightEnd":{"type":"text","label":"Extremely strongly","valueNumber":100}},{"id":23,"controlType":"text-slider","statement":"Craving","leftEnd":{"type":"text","label":"Not very strongly","valueNumber":0},"rightEnd":{"type":"text","label":"Extremely strongly","valueNumber":100}},{"id":24,"controlType":"text-slider","statement":"Anxiety","leftEnd":{"type":"text","label":"Not very strongly","valueNumber":0},"rightEnd":{"type":"text","label":"Extremely strongly","valueNumber":100}},{"id":25,"controlType":"text-slider","statement":"Envy","leftEnd":{"type":"text","label":"Not very strongly","valueNumber":0},"rightEnd":{"type":"text","label":"Extremely strongly","valueNumber":100}},{"id":26,"controlType":"text-slider","statement":"Empathetic pain","leftEnd":{"type":"text","label":"Not very strongly","valueNumber":0},"rightEnd":{"type":"text","label":"Extremely strongly","valueNumber":100}},{"id":27,"controlType":"text-slider","statement":"Awkwardness","leftEnd":{"type":"text","label":"Not very strongly","valueNumber":0},"rightEnd":{"type":"text","label":"Extremely strongly","valueNumber":100}},{"id":28,"controlType":"text-slider","statement":"Boredom","leftEnd":{"type":"text","label":"Not very strongly","valueNumber":0},"rightEnd":{"type":"text","label":"Extremely strongly","valueNumber":100}},{"id":29,"controlType":"text-slider","statement":"Contempt","leftEnd":{"type":"text","label":"Not very strongly","valueNumber":0},"rightEnd":{"type":"text","label":"Extremely strongly","valueNumber":100}}]}'
+#        rateIdentifyParameters: Cautious:Open,Spontaneous:Conscientious,Introverted:Extroverted,Challenging:Cooperative,Calm:Passionate
+#        rateCreativeParameters: Find out more about the product in the post?,Purchase the product in the post?,Share this post on social media?

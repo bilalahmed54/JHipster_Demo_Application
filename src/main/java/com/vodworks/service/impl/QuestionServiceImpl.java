@@ -12,6 +12,7 @@ import com.vodworks.service.QuestionsTemplateService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -22,13 +23,16 @@ import java.util.List;
  */
 @Service
 @Transactional
+//@ConfigurationProperties(prefix = "application.question",ignoreUnknownFields = false)
 public class QuestionServiceImpl implements QuestionService {
 
     private final Logger log = LoggerFactory.getLogger(QuestionServiceImpl.class);
 
-    private String rateIdentifyParameters = "Cautious:Open,Spontaneous:Conscientious,Introverted:Extroverted,Challenging:Cooperative,Calm:Passionate";
+    @Value("${question.rate-identify.parameters}")
+    private String rateIdentifyParameters;// = "Cautious:Open,Spontaneous:Conscientious,Introverted:Extroverted,Challenging:Cooperative,Calm:Passionate";
 
-    private String rateCreativeParameters = "Find out more about the product in the post?,Purchase the product in the post?,Share this post on social media?";
+    @Value("${question.rate-creative.parameters}")
+    private String rateCreativeParameters;// = "Find out more about the product in the post?,Purchase the product in the post?,Share this post on social media?";
 
     private final QuestionRepository questionRepository;
 
