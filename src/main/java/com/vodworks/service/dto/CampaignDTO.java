@@ -6,6 +6,8 @@ import com.vodworks.domain.CampaignCompBrand;
 
 import javax.validation.constraints.NotNull;
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 /**
@@ -50,7 +52,14 @@ public class CampaignDTO implements Serializable {
 
     private CampaignCompBrand brand;
 
+    private List<CampaignCompBrandDTO> competitorLogos;
+    private List<CampaignSocialComponentDTO> creativeImages;
+    private List<CampaignSocialComponentDTO> instagramPhotos;
+
     public CampaignDTO() {
+        this.creativeImages = new ArrayList<>();
+        this.competitorLogos = new ArrayList<>();
+        this.instagramPhotos = new ArrayList<>();
     }
 
     public CampaignDTO(Campaign campaign) {
@@ -66,6 +75,10 @@ public class CampaignDTO implements Serializable {
         this.brandFirstTrait = campaign.getBrandFirstTrait();
         this.brandSecondTrait = campaign.getBrandSecondTrait();
         this.instagramAudienceDescription = campaign.getInstagramAudienceDescription();
+
+        this.creativeImages = new ArrayList<>();
+        this.competitorLogos = new ArrayList<>();
+        this.instagramPhotos = new ArrayList<>();
     }
 
     public Long getId() {
@@ -186,6 +199,30 @@ public class CampaignDTO implements Serializable {
 
     public void setBrand(CampaignCompBrand brand) {
         this.brand = brand;
+    }
+
+    public List<CampaignCompBrandDTO> getCompetitorLogos() {
+        return competitorLogos;
+    }
+
+    public void setCompetitorLogos(List<CampaignCompBrandDTO> competitorLogos) {
+        this.competitorLogos = competitorLogos;
+    }
+
+    public List<CampaignSocialComponentDTO> getCreativeImages() {
+        return creativeImages;
+    }
+
+    public void setCreativeImages(List<CampaignSocialComponentDTO> creativeImages) {
+        this.creativeImages = creativeImages;
+    }
+
+    public List<CampaignSocialComponentDTO> getInstagramPhotos() {
+        return instagramPhotos;
+    }
+
+    public void setInstagramPhotos(List<CampaignSocialComponentDTO> instagramPhotos) {
+        this.instagramPhotos = instagramPhotos;
     }
 
     @Override

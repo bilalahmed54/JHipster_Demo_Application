@@ -46,14 +46,14 @@ public class QuestionServiceImpl implements QuestionService {
     }
 
     @Override
-    public void createCampaignQuestions(Campaign campaign) {
+    public void createCampaignQuestions(Campaign campaign, CampaignCompBrand campaignBrand, List<CampaignCompBrand> campaignCompetitors ) {
 
         //Saving Questions after Populating the Templates
 
         String questionStr = "";
 
-        CampaignCompBrand campaignBrand = this.campaignCompBrandRepository.findAllByCampaignAndAndType(campaign, CampaignBrandCompType.BRAND).get(0);
-        List<CampaignCompBrand> campaignCompetitors = this.campaignCompBrandRepository.findAllByCampaignAndAndType(campaign, CampaignBrandCompType.COMP);
+        //CampaignCompBrand campaignBrand = this.campaignCompBrandRepository.findAllByCampaignAndAndType(campaign, CampaignBrandCompType.BRAND).get(0);
+        //List<CampaignCompBrand> campaignCompetitors = this.campaignCompBrandRepository.findAllByCampaignAndAndType(campaign, CampaignBrandCompType.COMP);
 
         String brandLogoImageUrl = campaignBrand.getImageFileUrl();
         String competitor1LogoImageUrl = campaignCompetitors.get(0).getImageFileUrl();

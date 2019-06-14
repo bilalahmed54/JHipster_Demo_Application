@@ -1,5 +1,6 @@
 package com.vodworks.service.dto;
 
+import com.vodworks.domain.CampaignSocialComponent;
 import com.vodworks.domain.enumeration.CampaignSocialComponentType;
 
 import javax.validation.constraints.NotNull;
@@ -29,6 +30,29 @@ public class CampaignSocialComponentDTO implements Serializable {
 
     @NotNull
     private Long campaignId;
+
+    public CampaignSocialComponentDTO() {
+    }
+
+    public CampaignSocialComponentDTO(Long id, @NotNull String caption, @NotNull String influencer, @NotNull Boolean isPrimary, String imageFileUrl, @NotNull CampaignSocialComponentType type, @NotNull Long campaignId) {
+        this.id = id;
+        this.caption = caption;
+        this.influencer = influencer;
+        this.isPrimary = isPrimary;
+        this.imageFileUrl = imageFileUrl;
+        this.type = type;
+        this.campaignId = campaignId;
+    }
+
+    public CampaignSocialComponentDTO(CampaignSocialComponent campaignSocialComponent) {
+        this.id = campaignSocialComponent.getId();
+        this.caption = campaignSocialComponent.getCaption();
+        this.influencer = campaignSocialComponent.getInfluencer();
+        this.isPrimary = campaignSocialComponent.isIsPrimary();
+        this.imageFileUrl = campaignSocialComponent.getImageFileUrl();
+        this.type = campaignSocialComponent.getType();
+        this.campaignId = campaignSocialComponent.getCampaign().getId();
+    }
 
     public Long getId() {
         return id;

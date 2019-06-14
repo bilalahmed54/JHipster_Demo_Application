@@ -1,6 +1,7 @@
 package com.vodworks.service;
 
 import com.vodworks.domain.Campaign;
+import com.vodworks.domain.CampaignCompBrand;
 import com.vodworks.service.dto.QuestionDTO;
 
 import java.util.List;
@@ -11,5 +12,5 @@ import java.util.Optional;
  */
 public interface QuestionService {
 
-    public void createCampaignQuestions(Campaign campaign);
+    public void createCampaignQuestions(Campaign campaign, CampaignCompBrand campaignBrand, List<CampaignCompBrand> campaignCompetitors);
 }

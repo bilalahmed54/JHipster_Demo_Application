@@ -1,5 +1,6 @@
 package com.vodworks.service.dto;
 
+import com.vodworks.domain.CampaignCompBrand;
 import com.vodworks.domain.enumeration.CampaignBrandCompType;
 
 import javax.validation.constraints.NotNull;
@@ -23,6 +24,25 @@ public class CampaignCompBrandDTO implements Serializable {
 
     @NotNull
     private Long campaignId;
+
+    public CampaignCompBrandDTO() {
+    }
+
+    public CampaignCompBrandDTO(Long id, String imageFileUrl, @NotNull String compBrandName, @NotNull CampaignBrandCompType type, @NotNull Long campaignId) {
+        this.id = id;
+        this.imageFileUrl = imageFileUrl;
+        this.compBrandName = compBrandName;
+        this.type = type;
+        this.campaignId = campaignId;
+    }
+
+    public CampaignCompBrandDTO(CampaignCompBrand campaignCompBrand, long id) {
+        this.id = campaignCompBrand.getId();
+        this.imageFileUrl = campaignCompBrand.getImageFileUrl();
+        this.compBrandName = campaignCompBrand.getCompBrandName();
+        this.type = campaignCompBrand.getType();
+        this.campaignId = id;
+    }
 
     public Long getId() {
         return id;

@@ -9,6 +9,7 @@ import com.vodworks.repository.CampaignRepository;
 import com.vodworks.repository.QuestionRepository;
 import com.vodworks.service.CampaignService;
 import com.vodworks.service.QuestionService;
+import com.vodworks.service.dto.CampaignCompBrandDTO;
 import com.vodworks.service.dto.CampaignDTO;
 import com.vodworks.service.dto.CampaignListDTO;
 import com.vodworks.service.dto.CampaignQuestionDTO;
@@ -69,15 +70,42 @@ public class CampaignServiceImpl implements CampaignService {
     public CampaignQuestionDTO get(Long campaignId) {
 
         log.debug("Request to Get Campaign : {}", campaignId);
+
         Campaign campaign = campaignRepository.getOne(campaignId);
 
+        CampaignDTO campaignDTO = new CampaignDTO(campaign);
+
         CampaignQuestionDTO campaignQuestionDTO = new CampaignQuestionDTO();
-        campaignQuestionDTO.setCampaign(campaign);
+
+        List<CampaignCompBrand> campaignBrands = campaignCompBrandRepository.findAllByCampaignAndAndType(campaign, CampaignBrandCompType.BRAND);
+        if (campaignBrands != null && campaignBrands.size() > 0) {
+
+            CampaignCompBrand campaignCompBrand = campaignBrands.get(0);
+            //campaignCompBrand.setCampaign(null);
+            campaignDTO.setBrand(campaignCompBrand);
+        }
+
+        campaignQuestionDTO.setCampaign(campaignDTO);
+
+        List<CampaignCompBrand> campaignComps = campaignCompBrandRepository.findAllByCampaignAndAndType(campaign, CampaignBrandCompType.COMP);
+        List<CampaignCompBrandDTO> campaignCompBrandDtos = new ArrayList<>();
+
+        if (campaignComps != null && campaignComps.size() > 0) {
+
+            for(CampaignCompBrand campaignCompBrand: campaignComps) {
+                CampaignCompBrandDTO campaignCompBrandDTO = new CampaignCompBrandDTO(campaignCompBrand, campaign.getId());
+                campaignCompBrandDtos.add(campaignCompBrandDTO);
+            }
+
+            campaignDTO.setCompetitorLogos(campaignCompBrandDtos);
+        }
+
+        campaignQuestionDTO.setCampaign(campaignDTO);
 
         List<Question> questionList = this.questionRepository.findAllByCampaign(campaign);
 
         if (questionList == null || questionList.size() == 0) {
-            this.questionService.createCampaignQuestions(campaign);
+            this.questionService.createCampaignQuestions(campaign, campaignBrands.get(0), campaignComps);
             questionList = this.questionRepository.findAllByCampaign(campaign);
         }
 
@@ -113,7 +141,7 @@ public class CampaignServiceImpl implements CampaignService {
             if (campaignCompBrands != null && campaignCompBrands.size() > 0) {
 
                 CampaignCompBrand campaignCompBrand = campaignCompBrands.get(0);
-                campaignCompBrand.setCampaign(null);
+                //campaignCompBrand.setCampaign(null);
                 campaignDTO.setBrand(campaignCompBrand);
             }
 

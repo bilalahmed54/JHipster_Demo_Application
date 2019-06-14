@@ -1,6 +1,9 @@
 package com.vodworks.web.rest;
 
+import com.fasterxml.jackson.databind.DeserializationFeature;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.vodworks.service.CampaignSocialComponentService;
+import com.vodworks.service.dto.CampaignCompBrandDTO;
 import com.vodworks.service.dto.CampaignSocialComponentDTO;
 import com.vodworks.web.rest.errors.BadRequestAlertException;
 import io.github.jhipster.web.util.HeaderUtil;
@@ -42,19 +45,22 @@ public class CampaignSocialComponentResource {
     /**
      * {@code POST  /campaign-social-components} : Create a new campaignSocialComponent.
      *
-     * @param campaignSocialComponentDTO the campaignSocialComponentDTO to create.
+     * @param campaignSocialComponentDTOStr the campaignSocialComponentDTO to create.
      * @return the {@link ResponseEntity} with status {@code 201 (Created)} and with body the new campaignSocialComponentDTO, or with status {@code 400 (Bad Request)} if the campaignSocialComponent has already an ID.
      * @throws URISyntaxException if the Location URI syntax is incorrect.
      */
     @PostMapping("/save")
     public ResponseEntity<CampaignSocialComponentDTO> createCampaignSocialComponent(
-        @Valid @RequestPart(value = "meta_data", required = true) CampaignSocialComponentDTO campaignSocialComponentDTO,
+        @Valid @RequestPart(value = "meta_data", required = true) String campaignSocialComponentDTOStr,
         @RequestParam(value = "imageFile", required = true) MultipartFile imageFile) throws URISyntaxException, IOException {
 
-        log.debug("REST request to save CampaignSocialComponent : {}", campaignSocialComponentDTO);
-        if (campaignSocialComponentDTO.getId() != null) {
-            throw new BadRequestAlertException("A new campaignSocialComponent cannot already have an ID", ENTITY_NAME, "idexists");
-        }
+        log.debug("REST request to save CampaignSocialComponent : {}", campaignSocialComponentDTOStr);
+
+        ObjectMapper objectMapper = new ObjectMapper();
+        objectMapper.disable(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES);
+
+        CampaignSocialComponentDTO campaignSocialComponentDTO = objectMapper.readValue(campaignSocialComponentDTOStr, CampaignSocialComponentDTO.class);
+
         CampaignSocialComponentDTO result = campaignSocialComponentService.save(campaignSocialComponentDTO, imageFile);
         return ResponseEntity.created(new URI("/api/campaign-social-components/" + result.getId()))
             .headers(HeaderUtil.createEntityCreationAlert(applicationName, false, ENTITY_NAME, result.getId().toString()))
